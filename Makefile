@@ -1,7 +1,21 @@
 .PHONY: all
 
-# As default 'make' target, run all targets
+SCREEN ?= 1
+
+
+default:
+	@echo "Enter a valid pattern after make"
+
+
+
 all: p1 p2 p3
+
+rev1:
+	@echo "Running PRoject 1 Revisions: "
+	@echo "To not print output to screen change the variable SCREEN in the Makefile to 0 "
+	awk -v screen=$(SCREEN) -f proj1/prog.awk data/data.csv    
+
+
 
 p1:
 	@echo "Running AWK Script proj1: "

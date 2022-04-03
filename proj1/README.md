@@ -1,10 +1,25 @@
 ## proj1
 
-This project parses structured data of CSV format using AWK, a scripting language commonly used to manipulate data and generate reports. 
+This code parses structured data of CSV format using AWK, a scripting language commonly used to manipulate data and generate reports. 
 
 The scripts rank records based on scores provided in the dataset, and lists the top 3 cars for certain categories.
 
 Data is stored in `data` folder, maintained by git submodule.
+
+The results of this code are sent to three output csv files.
+One labled initialReport.csv which has all the car data except for the show car in order of ranking.
+One labled bestMakes.csv holds the top 3 cars for each make.
+The last is bestCars.csv which holds the top 3 cars for each of the categories asked.
+
+
+This code is revised from the original code given.
+Bugs were fixed
+Functionality was added
+New documentation was made.
+
+
+
+
 
 
 ### Dependencies 
@@ -23,10 +38,15 @@ You must have the following installed. The linux commands to install necessary p
 
 ### Run
 
-To run proj1 make sure you are in the root of the project repository and run `make proj1`. 
+To run the code you must be in the root directoty and type out
+`make rev1`
+This stands for revisions 1 which means revisions for project 1. 
 
 ### Results
 
-Results are stored in a `.txt` document labeled `ranking.txt`, that lists cars by highest points earned to lowest points earned. 
+The results of this code are sent to three output csv files.
+One labled initialReport.csv which has all the car data except for the show car in order of ranking.
+One labled bestMakes.csv holds the top 3 cars for each make.
+The last is bestCars.csv which holds the top 3 cars for each of the categories asked.
 
-Each entry is ordered by (Car ID, Year, Car Make, Car Model, Total Score).
+
