@@ -1,7 +1,7 @@
 .PHONY: all
 
 SCREEN ?= 1
-
+NUMRANKS ?= 3
 
 default:
 	@echo "Enter a valid pattern after make"
@@ -11,9 +11,12 @@ default:
 all: p1 p2 p3
 
 rev1:
-	@echo "Running PRoject 1 Revisions: "
+	@echo "Running Project 1 Revisions: "
 	@echo "To not print output to screen change the variable SCREEN in the Makefile to 0 "
-	awk -v screen=$(SCREEN) -f proj1/prog.awk data/data.csv    
+	@echo "To display a different number of top cars change the variable NUMRANKS in the Makefile to the desired value "
+	awk -v screen=$(SCREEN) -v numRanks=$(NUMRANKS) -f proj1/prog.awk data/data.csv
+	@echo "Finished running Project 1 revisions"
+    
 
 
 

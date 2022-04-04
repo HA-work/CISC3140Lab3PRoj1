@@ -43,6 +43,20 @@ BEGIN {
     	}
 
 
+
+        if(!numRanks) {
+                print("-----> no number of ranks defined, setting to default 3")
+                print("The top 3 of each category will be displayed")
+                screen = 3;
+        }
+
+
+# flag for numRanks inspired by teammate Adina 
+
+
+
+
+
 }
 
 
@@ -63,7 +77,7 @@ FNR == 1 {
 	"mods_score",
 	"mods_overall_score",
 	"car_overall_score", 
-	"ranking") > "initialReport.csv" ;
+	"ranking") > "proj1/sampleOutputs/initialReport.csv" ;
 
 #sampleOutputs/initialReport.csv
 }
@@ -302,7 +316,7 @@ END {
                 arrCars[carNum][modsIndex],
                 arrCars[carNum][modsOverIndex],
                 arrCars[carNum][carOverIndex],
-		carNum    )  > "initialReport.csv"  ;
+		carNum    )  > "proj1/sampleOutputs/initialReport.csv"  ;
 		
 		arrCars[carNum][NF+1] = carNum		
 
@@ -341,7 +355,7 @@ END {
 		# for some reason this prints all the cars makes
 
 
-                printf("%-20s \n", curMake) > "bestMakes.csv"
+                printf("%-20s \n", curMake) > "proj1/sampleOutputs/bestMakes.csv"
 
                 printf( "%-18s, %-18s, %-18s, %-18s, %-18s, %-18s, %-18s,%-18s, %-18s, %-18s, %-18s, %-18s, %-18s \n",
                 "relative_ranking",
@@ -356,7 +370,7 @@ END {
                 "mods_score",
                 "mods_overall_score",
                 "car_overall_score",
-                "ranking") > "bestMakes.csv" ;
+                "ranking") > "proj1/sampleOutputs/bestMakes.csv" ;
 
 
 
@@ -407,7 +421,7 @@ END {
                 for (carNum= 1; carNum <= length(arrCars); carNum++){
 	
 
-                        if ((curMake == arrCars[carNum][5]) && bestMakes < 3){
+                        if ((curMake == arrCars[carNum][5]) && bestMakes < numRanks){
 
 
 
@@ -425,7 +439,7 @@ END {
                                 arrCars[carNum][modsIndex],
                                 arrCars[carNum][modsOverIndex],
                                 arrCars[carNum][carOverIndex],
-                                arrCars[carNum][NF+1]    )  > "bestMakes.csv"  ;
+                                arrCars[carNum][NF+1]    )  > "proj1/sampleOutputs/bestMakes.csv"  ;
 
 
 
@@ -480,7 +494,7 @@ END {
 
 
 
-	printf("\n") > "bestMakes.csv"
+	printf("\n") > "proj1/sampleOutputs/bestMakes.csv"
 
 	if(screen == 1){
 	printf("\n")
@@ -496,8 +510,8 @@ END {
 
 ###############################3
 
-	printf("File for the top cars of each category \n") > "topCars.csv"
-	printf("\n") > "topCars.csv";
+	printf("File for the top cars of each category \n") > "proj1/sampleOutputs/topCars.csv"
+	printf("\n") > "proj1/sampleOutputs/topCars.csv";
 
 
 	if(screen == 1){
@@ -510,7 +524,7 @@ END {
 
 
 # top 3 overall
-        printf("Overall \n") > "topCars.csv"
+        printf("Overall \n") > "proj1/sampleOutputs/topCars.csv"
 
                 printf( "%-18s, %-18s, %-18s, %-18s, %-18s, %-18s, %-18s,%-18s, %-18s, %-18s, %-18s, %-18s, %-18s \n",
                 "relative_ranking",
@@ -525,7 +539,7 @@ END {
                 "mods_score",
                 "mods_overall_score",
                 "car_overall_score",
-                "ranking") > "topCars.csv" ;
+                "ranking") > "proj1/sampleOutputs/topCars.csv" ;
 
 
 
@@ -565,7 +579,7 @@ END {
 
 
 
-	for(i = 1; i <= 3; i++){
+	for(i = 1; i <=  numRanks; i++){
 
                                 printf("%-18s, %-18s, %-18s, %-18s, %-18s, %-18s, %-18s,%-18s, %-18s, %-18s, %-18s, %-18s, %-18s \n",
                                 i,
@@ -580,7 +594,7 @@ END {
                                 arrCars[i][modsIndex],
                                 arrCars[i][modsOverIndex],
                                 arrCars[i][carOverIndex],
-                                arrCars[i][NF+1]    )  > "topCars.csv"  ;
+                                arrCars[i][NF+1]    )  > "proj1/sampleOutputs/topCars.csv"  ;
 
 
 
@@ -618,7 +632,7 @@ END {
 	}
 
 
-        printf("\n") > "topCars.csv";
+        printf("\n") > "proj1/sampleOutputs/topCars.csv";
 
 	if(screen == 1){
 
@@ -637,7 +651,7 @@ END {
        sort_by_col(arrCars, racerIndex); 
 
 
- printf("Racer \n") > "topCars.csv"
+ printf("Racer \n") > "proj1/sampleOutputs/topCars.csv"
 
                 printf( "%-18s, %-18s, %-18s, %-18s, %-18s, %-18s, %-18s,%-18s, %-18s, %-18s, %-18s, %-18s, %-18s \n",
                 "relative_ranking",
@@ -652,7 +666,7 @@ END {
                 "mods_score",
                 "mods_overall_score",
                 "car_overall_score",
-                "ranking") > "topCars.csv" ;
+                "ranking") > "proj1/sampleOutputs/topCars.csv" ;
 
 
 
@@ -691,7 +705,7 @@ if(screen == 1){
 
 
 
-        for(i = 1; i <= 3; i++){
+        for(i = 1; i <=  numRanks; i++){
 
                                 printf("%-18s, %-18s, %-18s, %-18s, %-18s, %-18s, %-18s,%-18s, %-18s, %-18s, %-18s, %-18s, %-18s \n",
                                 i,
@@ -706,7 +720,7 @@ if(screen == 1){
                                 arrCars[i][modsIndex],
                                 arrCars[i][modsOverIndex],
                                 arrCars[i][carOverIndex],
-                                arrCars[i][NF+1]    )  > "topCars.csv"  ;
+                                arrCars[i][NF+1]    )  > "proj1/sampleOutputs/topCars.csv"  ;
 
 
 
@@ -744,7 +758,7 @@ if(screen == 1){
 
 
 
- printf("\n") > "topCars.csv";
+ printf("\n") > "proj1/sampleOutputs/topCars.csv";
 
 if(screen == 1){
 
@@ -759,7 +773,7 @@ if(screen == 1){
 
        sort_by_col(arrCars, engineIndex); 
 
- printf("Engine \n") > "topCars.csv"
+ printf("Engine \n") > "proj1/sampleOutputs/topCars.csv"
 
                 printf( "%-18s, %-18s, %-18s, %-18s, %-18s, %-18s, %-18s,%-18s, %-18s, %-18s, %-18s, %-18s, %-18s \n",
                 "relative_ranking",
@@ -774,7 +788,7 @@ if(screen == 1){
                 "mods_score",
                 "mods_overall_score",
                 "car_overall_score",
-                "ranking") > "topCars.csv" ;
+                "ranking") > "proj1/sampleOutputs/topCars.csv" ;
 
 
     
@@ -815,7 +829,7 @@ if(screen == 1){
 
 
 
-        for(i = 1; i <= 3; i++){
+        for(i = 1; i <= numRanks; i++){
 
                                 printf("%-18s, %-18s, %-18s, %-18s, %-18s, %-18s, %-18s,%-18s, %-18s, %-18s, %-18s, %-18s, %-18s \n",
                                 i,              
@@ -830,7 +844,7 @@ if(screen == 1){
                                 arrCars[i][modsIndex],     
                                 arrCars[i][modsOverIndex],     
                                 arrCars[i][carOverIndex],     
-                                arrCars[i][NF+1]    )  > "topCars.csv"  ;     
+                                arrCars[i][NF+1]    )  > "proj1/sampleOutputs/topCars.csv"  ;     
 
 
 
@@ -874,7 +888,7 @@ if(screen == 1){
      
 
 
- printf("\n") > "topCars.csv";
+ printf("\n") > "proj1/sampleOutputs/topCars.csv";
 
 
 if(screen == 1){
@@ -889,7 +903,7 @@ if(screen == 1){
        sort_by_col(arrCars, bodyIndex); 
 
 
- printf("Body_Frame \n") > "topCars.csv"
+ printf("Body_Frame \n") > "proj1/sampleOutputs/topCars.csv"
 
                 printf( "%-18s, %-18s, %-18s, %-18s, %-18s, %-18s, %-18s,%-18s, %-18s, %-18s, %-18s, %-18s, %-18s \n",
                 "relative_ranking",
@@ -904,7 +918,7 @@ if(screen == 1){
                 "mods_score",
                 "mods_overall_score",
                 "car_overall_score",
-                "ranking") > "topCars.csv" ;
+                "ranking") > "proj1/sampleOutputs/topCars.csv" ;
 
 
       
@@ -949,7 +963,7 @@ if(screen == 1){
 
 
 
-        for(i = 1; i <= 3; i++){
+        for(i = 1; i <= numRanks; i++){
 
                                 printf("%-18s, %-18s, %-18s, %-18s, %-18s, %-18s, %-18s,%-18s, %-18s, %-18s, %-18s, %-18s, %-18s \n",
                                 i,
@@ -964,7 +978,7 @@ if(screen == 1){
                                 arrCars[i][modsIndex],
                                 arrCars[i][modsOverIndex],
                                 arrCars[i][carOverIndex],
-                                arrCars[i][NF+1]    )  > "topCars.csv"  ;
+                                arrCars[i][NF+1]    )  > "proj1/sampleOutputs/topCars.csv"  ;
 
 
 
@@ -1008,7 +1022,7 @@ if(screen == 1){
 
         }
 
- printf("\n") > "topCars.csv";
+ printf("\n") > "proj1/sampleOutputs/topCars.csv";
 
 
 if(screen == 1){
@@ -1028,7 +1042,7 @@ if(screen == 1){
 
 
 
- printf("Mods \n") > "topCars.csv"
+ printf("Mods \n") > "proj1/sampleOutputs/topCars.csv"
 
                 printf( "%-18s, %-18s, %-18s, %-18s, %-18s, %-18s, %-18s,%-18s, %-18s, %-18s, %-18s, %-18s, %-18s \n",
                 "relative_ranking",
@@ -1043,7 +1057,7 @@ if(screen == 1){
                 "mods_score",
                 "mods_overall_score",
                 "car_overall_score",
-                "ranking") > "topCars.csv" ;
+                "ranking") > "proj1/sampleOutputs/topCars.csv" ;
 
 
 
@@ -1090,7 +1104,7 @@ if(screen == 1){
      
 
 
-        for(i = 1; i <= 3; i++){
+        for(i = 1; i <= numRanks; i++){
 
                                 printf("%-18s, %-18s, %-18s, %-18s, %-18s, %-18s, %-18s,%-18s, %-18s, %-18s, %-18s, %-18s, %-18s \n",
                                 i,
@@ -1105,7 +1119,7 @@ if(screen == 1){
                                 arrCars[i][modsIndex],
                                 arrCars[i][modsOverIndex],
                                 arrCars[i][carOverIndex],
-                                arrCars[i][NF+1]    )  > "topCars.csv"  ;
+                                arrCars[i][NF+1]    )  > "proj1/sampleOutputs/topCars.csv"  ;
 
 
 
@@ -1137,7 +1151,7 @@ if(screen == 1){
 
 
         }
- printf("\n") > "topCars.csv";
+ printf("\n") > "proj1/sampleOutputs/topCars.csv";
 
 
 if(screen == 1){
@@ -1158,7 +1172,7 @@ if(screen == 1){
 
 
 
- printf("Mods_Overall \n") > "topCars.csv"
+ printf("Mods_Overall \n") > "proj1/sampleOutputs/topCars.csv"
 
                 printf( "%-18s, %-18s, %-18s, %-18s, %-18s, %-18s, %-18s,%-18s, %-18s, %-18s, %-18s, %-18s, %-18s \n",
                 "relative_ranking",
@@ -1173,7 +1187,7 @@ if(screen == 1){
                 "mods_score",
                 "mods_overall_score",
                 "car_overall_score",
-                "ranking") > "topCars.csv" ;
+                "ranking") > "proj1/sampleOutputs/topCars.csv" ;
 
 
 
@@ -1224,7 +1238,7 @@ if(screen == 1){
 
        
 
-        for(i = 1; i <= 3; i++){
+        for(i = 1; i <= numRanks; i++){
 
                                 printf("%-18s, %-18s, %-18s, %-18s, %-18s, %-18s, %-18s,%-18s, %-18s, %-18s, %-18s, %-18s, %-18s \n",
                                 i,
@@ -1239,7 +1253,7 @@ if(screen == 1){
                                 arrCars[i][modsIndex],
                                 arrCars[i][modsOverIndex],
                                 arrCars[i][carOverIndex],
-                                arrCars[i][NF+1]    )  > "topCars.csv"  ;
+                                arrCars[i][NF+1]    )  > "proj1/sampleOutputs/topCars.csv"  ;
 
 
 
@@ -1282,7 +1296,7 @@ if(screen == 1){
 
 
         }
- printf("\n") > "topCars.csv";
+ printf("\n") > "proj1/sampleOutputs/topCars.csv";
 
 if(screen == 1){
 
@@ -1307,7 +1321,7 @@ if(screen == 1){
        sort_by_col(arrCars, carOverIndex); 
 
 
- printf("Car_Overall \n") > "topCars.csv"
+ printf("Car_Overall \n") > "proj1/sampleOutputs/topCars.csv"
 
                 printf( "%-18s, %-18s, %-18s, %-18s, %-18s, %-18s, %-18s,%-18s, %-18s, %-18s, %-18s, %-18s, %-18s \n",
                 "relative_ranking",
@@ -1322,7 +1336,7 @@ if(screen == 1){
                 "mods_score",
                 "mods_overall_score",
                 "car_overall_score",
-                "ranking") > "topCars.csv" ;
+                "ranking") > "proj1/sampleOutputs/topCars.csv" ;
 
 
 
@@ -1368,7 +1382,7 @@ if(screen == 1){
 
 
 
-        for(i = 1; i <= 3; i++){
+        for(i = 1; i <= numRanks; i++){
 
                                 printf("%-18s, %-18s, %-18s, %-18s, %-18s, %-18s, %-18s,%-18s, %-18s, %-18s, %-18s, %-18s, %-18s \n",
                                 i,
@@ -1383,7 +1397,7 @@ if(screen == 1){
                                 arrCars[i][modsIndex],
                                 arrCars[i][modsOverIndex],
                                 arrCars[i][carOverIndex],
-                                arrCars[i][NF+1]    )  > "topCars.csv"  ;
+                                arrCars[i][NF+1]    )  > "proj1/sampleOutputs/topCars.csv"  ;
 
 
 

@@ -6,10 +6,10 @@ The scripts rank records based on scores provided in the dataset, and lists the 
 
 Data is stored in `data` folder, maintained by git submodule.
 
-The results of this code are sent to three output csv files.
+The results of this code are sent to three output csv files in the sampleOutputs folder.
 One labled initialReport.csv which has all the car data except for the show car in order of ranking.
 One labled bestMakes.csv holds the top 3 cars for each make.
-The last is bestCars.csv which holds the top 3 cars for each of the categories asked.
+The last is topCars.csv which holds the top 3 cars for each of the categories asked.
 
 
 This code is revised from the original code given.
@@ -41,6 +41,19 @@ You must have the following installed. The linux commands to install necessary p
 To run the code you must be in the root directoty and type out
 `make rev1`
 This stands for revisions 1 which means revisions for project 1. 
+
+### Flag options
+There are 2 flag options available.
+The first is for the screen variable which is by default set to 1.
+This makes the output also be printed to the screen.
+Changing it will stop this.
+
+
+
+
+
+The second is the numRanks variable which is by default set to 3.
+Changing this will change the number of cars displayed for each category.
 
 ### Results
 
