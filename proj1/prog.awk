@@ -65,6 +65,9 @@ FNR == 1 {
 
 	#makeNum = 0
 
+	carsInput = 1
+	# needed to add this because we skip the show car entry
+
 	printf( "%-18s, %-18s, %-18s, %-18s, %-18s, %-18s,%-18s, %-18s, %-18s, %-18s, %-18s, %-18s \n",
 	$4,
 	$5, 
@@ -223,12 +226,19 @@ FNR > 1{ # skip the first line as it is a header row
 # should work
 	if (tempCarID != "Showcar"){
 		for (f = 1; f <= NF; f++){
-    			arrCars[FNR-1][f] = $f;
+    			arrCars[carsInput][f] = $f;
+			
   		}
+
+		carsInput++;
 
 
 	}
 
+# used to be arrCars[NFR - 1][f]
+# was chnaged and carInput was added because we skip the showcar entry which leads to a hole in the arrat
+# which was for some reason filled with the chevy with id 0
+# now this bug is fixed with this simple inclusion
 
 
 
@@ -295,6 +305,8 @@ if ($5 in makeList){
 
 END {
 
+
+	print(length(arrCars))
 
         sort_by_col(arrCars, totalIndex);
 
